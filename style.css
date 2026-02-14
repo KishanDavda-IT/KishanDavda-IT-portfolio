@@ -329,6 +329,58 @@ input:checked+.slider:before {
     box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
 }
 
+/* --- SKILLS --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.skills-category {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.skills-category:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.skills-category h3 {
+    margin-bottom: 20px;
+    font-family: 'Space Grotesk';
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary-color);
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background: var(--bg-alt);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+
+.skill-tag:hover {
+    background: var(--primary-color);
+    color: #000;
+    border-color: var(--primary-color);
+}
+
+
 /* --- PROJECTS --- */
 .projects-grid {
     display: grid;
