@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Kishan Davda | Full-Stack Developer. Specialist in API integration, Python automation, and modern Frontend systems.">
+    <title>Kishan Davda | Full-Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <a href="#" class="logo">Kishan<span>.dev</span></a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Stack</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" checked />
+                        <div class="slider round">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge">Available for Hire <span class="pulse"></span></div>
+                <h1 class="headline">Full-Stack Logic.<br> <span class="gradient-text">Pixel-Perfect UI.</span></h1>
+                <p class="subheadline">I bridge the gap between interactive Frontend UIs and robust Backend logic.
+                    Specializing in <strong>Python</strong> and <strong>Modern JavaScript</strong>.</p>
+                <div class="cta-group">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="Kishan_Davda_Resume.pdf" class="btn btn-outline" download>Resume <i
+                            class="fas fa-download"></i></a>
+                </div>
+                <div class="social-hero">
+                    <a href="https://github.com/KishanDavda-IT" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/kishan-davda-667909342" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="mailto:kishandavda2008@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="dots"><span class="red"></span><span class="yellow"></span><span
+                                class="green"></span></div>
+                        <div class="title">kishan_dev.py</div>
+                    </div>
+                    <div class="window-body">
+                        <div class="code-line"><span class="kwd">import</span> <span class="var">FullStack</span></div>
+                        <div class="code-line"><span class="kwd">class</span> <span class="cls">Developer</span>:</div>
+                        <div class="code-line indent">name = <span class="str">"Kishan Davda"</span></div>
+                        <div class="code-line indent">focus = [<span class="str">"UI"</span>, <span
+                                class="str">"APIs"</span>]</div>
+                        <div class="console-output">
+                            <span class="success">➜ Tomorrow.io Engine: Active</span><br>
+                            <span class="success">➜ OLED Theme: Loaded</span><br>
+                            <span class="typing-cursor">_</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Who I Am</h2>
+            <div class="about-grid">
+                <div class="about-img">
+                    <div class="about-img-container">
+                        <img src="Profile.jpeg" alt="Kishan Davda" class="profile-photo">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Solving Problems Across the Stack</h3>
+                    <p>Based in Gujarat, India, I am an IT fresher focused on building end-to-end web applications. I
+                        love the challenge of designing a beautiful user experience and then engineering the backend
+                        systems to make it work.</p>
+                    <p>Currently pursuing my Diploma in IT, I’ve mastered <strong>Responsive Web Design</strong> and
+                        <strong>Python Automation</strong>. I also utilize AI prompt engineering to accelerate my
+                        development workflow.
+                    </p>
+                    <div class="stats-container">
+                        <div class="stat-box"><span class="stat-number" data-target="5">0</span><span
+                                class="stat-desc">Projects</span></div>
+                        <div class="stat-box"><span class="stat-number" data-target="100">0</span>%<span
+                                class="stat-desc">Commitment</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Work</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img-placeholder" style="background: linear-gradient(45deg, #5a4fcf, #1e1e2f);">
+                        <i class="fas fa-cloud-meatball"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Tomorrow.io Weather Engine</h3>
+                        <p>A full-stack dashboard featuring a live Network Monitor. Demonstrates REST API integration
+                            and real-time JSON parsing.</p>
+                        <div class="tech-stack"><span>API</span><span>JS</span><span>Logic</span></div>
+                        <div class="project-links">
+                            <a href="https://github.com/KishanDavda-IT/weather-app-fullstack" target="_blank"
+                                class="link-btn"><i class="fab fa-github"></i> Code</a>
+                            <a href="https://KishanDavda-IT.github.io/weather-app-fullstack/" target="_blank"
+                                class="link-btn"><i class="fas fa-external-link-alt"></i> Live</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img-placeholder" style="background: linear-gradient(45deg, #2563eb, #000000);">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Full-Stack Portfolio</h3>
+                        <p>This OLED-optimized portfolio. Built with a custom View Transition engine for seamless
+                            dark/light mode warping.</p>
+                        <div class="tech-stack"><span>HTML5</span><span>CSS3</span><span>JS</span></div>
+                        <div class="project-links">
+                            <a href="https://github.com/KishanDavda-IT" target="_blank" class="link-btn"><i
+                                    class="fab fa-github"></i> Source</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section bg-alt">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Let's build something together.</h3>
+                    <p>I am currently looking for Full-Stack or Frontend internships.</p>
+                    <div class="info-item"><i class="fas fa-envelope"></i> <span>kishandavda2008@gmail.com</span></div>
+                    <div class="info-item"><i class="fab fa-linkedin"></i> <span>Kishan Davda</span></div>
+                </div>
+                <form class="contact-form" action="https://formspree.io/f/xvzbaooq" method="POST">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" rows="4" placeholder="Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
