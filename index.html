@@ -10,230 +10,154 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Syne:wght@400..800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="loader">
-        <div class="spinner"></div>
-    </div>
+    <div id="ambient-3d-container"></div>
+    <div id="custom-cursor"></div>
 
     <nav class="navbar">
-        <div class="container nav-flex">
-            <a href="#" class="logo">Kishan<span>.dev</span></a>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Stack</a></li>
-                <li><a href="#projects">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li class="theme-switch-wrapper">
-                    <label class="theme-switch" for="checkbox">
-                        <input type="checkbox" id="checkbox" checked />
-                        <div class="slider round">
-                            <i class="fas fa-sun"></i>
-                            <i class="fas fa-moon"></i>
-                        </div>
-                    </label>
-                </li>
-            </ul>
+        <div class="nav-container">
+            <a href="#" class="logo">Kishan<span>Davda</span></a>
+            <div class="nav-right">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#about" data-text="About">About</a></li>
+                    <li><a href="#projects" data-text="Work">Work</a></li>
+                    <li><a href="#contact" data-text="Contact">Contact</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <section id="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <div class="badge">Available for Hire <span class="pulse"></span></div>
-                <h1 class="headline">Full-Stack Logic.<br> <span class="gradient-text">Pixel-Perfect UI.</span></h1>
-                <p class="subheadline">I bridge the gap between interactive Frontend UIs and robust Backend logic.
-                    Specializing in <strong>Python</strong> and <strong>Modern JavaScript</strong>.</p>
-                <div class="cta-group">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="Kishan_Davda_Resume.pdf" class="btn btn-outline" download>Resume <i
-                            class="fas fa-download"></i></a>
+    <main data-scroll-container>
+        <section id="hero" class="hero-section">
+            <div class="hero-wrapper">
+                <div class="hero-line hero-line-1">
+                    <h1 class="giant-text">DESIGN</h1>
                 </div>
-                <div class="social-hero">
-                    <a href="https://github.com/KishanDavda-IT" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/kishan-davda-667909342" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
-                    <a href="mailto:kishandavda2008@gmail.com"><i class="fas fa-envelope"></i></a>
+                <div class="hero-line hero-line-2">
+                    <h1 class="giant-text">&amp; CODE</h1>
+                </div>
+                <div class="hero-line hero-line-3">
+                    <p class="hero-subtext">FULL-STACK DEVELOPER BASED IN INDIA. SPECIALIZING IN INTERACTIVE EXPERIENCES AND ROBUST BACKEND ARCHITECTURE.</p>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="code-window">
-                    <div class="window-header">
-                        <div class="dots"><span class="red"></span><span class="yellow"></span><span
-                                class="green"></span></div>
-                        <div class="title">kishan_dev.py</div>
+            <div class="scroll-indicator">
+                <span class="scroll-text">SCROLL TO EXPLORE</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-flex">
+                    <div class="about-content">
+                        <h2 class="section-heading">01. <br>The Philosophy</h2>
+                        <p class="editorial-p">I bridge the gap between imagination and implementation. My work exists at the intersection of aesthetic precision and functional excellence.</p>
+                        <p class="editorial-p secondary">Currently mastering Python and Modern JS, I focus on building systems that don't just work—they feel alive.</p>
                     </div>
-                    <div class="window-body">
-                        <div class="code-line"><span class="kwd">import</span> <span class="var">FullStack</span></div>
-                        <div class="code-line"><span class="kwd">class</span> <span class="cls">Developer</span>:</div>
-                        <div class="code-line indent">name = <span class="str">"Kishan Davda"</span></div>
-                        <div class="code-line indent">focus = [<span class="str">"UI"</span>, <span
-                                class="str">"APIs"</span>]</div>
-                        <div class="console-output">
-                            <span class="success">➜ Tomorrow.io Engine: Active</span><br>
-                            <span class="success">➜ OLED Theme: Loaded</span><br>
-                            <span class="typing-cursor">_</span>
+                    <div class="about-image">
+                        <div class="image-reveal">
+                            <img src="Profile.jpeg" alt="Kishan Davda">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="expertise-grid">
+                    <div class="expertise-item">
+                        <span class="expertise-num">A.</span>
+                        <h4 class="expertise-title">FULL-STACK ARCHITECTURE</h4>
+                        <p class="expertise-text">Designing robust, scalable backend systems with Node.js and Python, seamlessly integrated with performant frontend frameworks.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <span class="expertise-num">B.</span>
+                        <h4 class="expertise-title">AI & AUTOMATION</h4>
+                        <p class="expertise-text">Leveraging local LLMs and custom automation scripts to build intelligent environments and optimized development workflows.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <span class="expertise-num">C.</span>
+                        <h4 class="expertise-title">FINANCIAL SYSTEMS</h4>
+                        <p class="expertise-text">Building high-precision financial tools and coupon intelligence platforms with real-time data scraping and verification.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="work-section">
+            <div class="container">
+                <h2 class="section-heading">02. <br>Selected Works</h2>
+                <div class="projects-list">
+                    <div class="project-item">
+                        <div class="project-info">
+                            <span class="project-num">01</span>
+                            <div class="title-wrap">
+                                <h3 class="project-title">Gemma Chat</h3>
+                                <p class="project-desc">A local-first coding agent powered by Google's Gemma models. Built for offline "vibe coding" without cloud dependencies.</p>
+                            </div>
+                            <p class="project-category">TypeScript / LLM / Offline AI</p>
+                        </div>
+                        <a href="https://github.com/KishanDavda-IT/Gemma-chat-win" class="project-link">VIEW PROJECT</a>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-info">
+                            <span class="project-num">02</span>
+                            <div class="title-wrap">
+                                <h3 class="project-title">Kupi Coupon</h3>
+                                <p class="project-desc">Real-time coupon intelligence platform scraping and verifying discount codes for major Indian food delivery services.</p>
+                            </div>
+                            <p class="project-category">Python / Scraping / Real-time</p>
+                        </div>
+                        <a href="https://github.com/KishanDavda-IT/Kupi-coupon" class="project-link">VIEW PROJECT</a>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-info">
+                            <span class="project-num">03</span>
+                            <div class="title-wrap">
+                                <h3 class="project-title">OpenEnv Scheduler</h3>
+                                <p class="project-desc">AI-ready environment for complex calendar management with deterministic grading and Gradio visualization.</p>
+                            </div>
+                            <p class="project-category">Python / Meta Hackathon / AI Agents</p>
+                        </div>
+                        <a href="https://github.com/KishanDavda-IT/-OpenEnv-Scheduler" class="project-link">VIEW PROJECT</a>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-info">
+                            <span class="project-num">04</span>
+                            <div class="title-wrap">
+                                <h3 class="project-title">RupeeTools</h3>
+                                <p class="project-desc">Comprehensive suite of Indian financial calculators including SIP, EMI, and GST, built for precision and performance.</p>
+                            </div>
+                            <p class="project-category">Next.js / Financial / Vercel</p>
+                        </div>
+                        <a href="https://github.com/KishanDavda-IT/RupeeTools" class="project-link">VIEW PROJECT</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="giant-text contact-title">LET'S TALK</h2>
+                <div class="contact-flex">
+                    <div class="contact-details">
+                        <a href="mailto:kishandavda2008@gmail.com" class="contact-email">kishandavda2008@gmail.com</a>
+                        <div class="social-links">
+                            <a href="https://github.com/KishanDavda-IT">GITHUB</a>
+                            <a href="https://www.linkedin.com/in/kishan-davda-667909342">LINKEDIN</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">Who I Am</h2>
-            <div class="about-grid">
-                <div class="about-img">
-                    <div class="about-img-container">
-                        <img src="Profile.jpeg" alt="Kishan Davda" class="profile-photo">
-                    </div>
-                </div>
-                <div class="about-text">
-                    <h3>Solving Problems Across the Stack</h3>
-                    <p>Based in Gujarat, India, I am an IT fresher focused on building end-to-end web applications. I
-                        love the challenge of designing a beautiful user experience and then engineering the backend
-                        systems to make it work.</p>
-                    <p>Currently pursuing my Diploma in IT, I’ve mastered <strong>Responsive Web Design</strong> and
-                        <strong>Python Automation</strong>. I also utilize AI prompt engineering to accelerate my
-                        development workflow.
-                    </p>
-                    <div class="stats-container">
-                        <div class="stat-box"><span class="stat-number" data-target="3">0</span><span
-                                class="stat-desc">Projects</span></div>
-                        <div class="stat-box"><span class="stat-number" data-target="100">0</span>%<span
-                                class="stat-desc">Commitment</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="section bg-alt">
-        <div class="container">
-            <h2 class="section-title">Tech Stack</h2>
-            <div class="skills-grid">
-                <div class="skills-category">
-                    <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Tailwind CSS</span>
-                        <span class="skill-tag">Responsive Design</span>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3><i class="fas fa-server"></i> Backend</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Express</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Socket.io</span>
-                        <span class="skill-tag">REST APIs</span>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3><i class="fas fa-tools"></i> Tools & Others</h3>
-                    <div class="skills-list">
-                        <span class="skill-tag">Git & GitHub</span>
-                        <span class="skill-tag">Automation</span>
-                        <span class="skill-tag">Prompt Engineering</span>
-                        <span class="skill-tag">OLED Optimization</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title">Featured Work</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-img-placeholder" style="background: linear-gradient(45deg, #5a4fcf, #1e1e2f);">
-                        <i class="fas fa-cloud-meatball"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Tomorrow.io Weather Engine</h3>
-                        <p>A full-stack dashboard featuring a live Network Monitor. Demonstrates REST API integration
-                            and real-time JSON parsing.</p>
-                        <div class="tech-stack"><span>API</span><span>JS</span><span>Logic</span></div>
-                        <div class="project-links">
-                            <a href="https://github.com/KishanDavda-IT/weather-app-fullstack" target="_blank"
-                                class="link-btn"><i class="fab fa-github"></i> Code</a>
-                            <a href="https://KishanDavda-IT.github.io/weather-app-fullstack/" target="_blank"
-                                class="link-btn"><i class="fas fa-external-link-alt"></i> Live</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img-placeholder" style="background: linear-gradient(45deg, #2563eb, #000000);">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Full-Stack Portfolio</h3>
-                        <p>This OLED-optimized portfolio. Built with a custom View Transition engine for seamless
-                            dark/light mode warping.</p>
-                        <div class="tech-stack"><span>HTML5</span><span>CSS3</span><span>JS</span></div>
-                        <div class="project-links">
-                            <a href="https://github.com/KishanDavda-IT/KishanDavda-IT-portfolio" target="_blank"
-                                class="link-btn"><i class="fab fa-github"></i> Code</a>
-                            <a href="https://kishandavda-it.github.io/KishanDavda-IT-portfolio/" target="_blank"
-                                class="link-btn"><i class="fas fa-external-link-alt"></i> Live</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img-placeholder" style="background: linear-gradient(45deg, #7c3aed, #000000);">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Real-Time Chat App</h3>
-                        <p>A real-time messaging application built with Socket.io, Node.js, and Express. Featuring
-                            seamless communication and a modern dark-themed UI.</p>
-                        <div class="tech-stack"><span>Socket.io</span><span>Node.js</span><span>Express</span></div>
-                        <div class="project-links">
-                            <a href="https://github.com/KishanDavda-IT/Real-Time-chatapp" target="_blank"
-                                class="link-btn"><i class="fab fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section bg-alt">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>Let's build something together.</h3>
-                    <p>I am currently looking for Full-Stack or Frontend internships.</p>
-                    <div class="info-item"><i class="fas fa-envelope"></i> <span>kishandavda2008@gmail.com</span></div>
-                    <div class="info-item"><i class="fab fa-linkedin"></i> <span>Kishan Davda</span></div>
-                </div>
-                <form class="contact-form" action="https://formspree.io/f/xvzbaooq" method="POST">
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="message" rows="4" placeholder="Message" required></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>

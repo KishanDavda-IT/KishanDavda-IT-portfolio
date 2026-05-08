@@ -1,116 +1,123 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. Loader ---
-    const loader = document.getElementById('loader');
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => loader.style.display = 'none', 500);
-    }, 1000);
+    const cursor = document.getElementById('custom-cursor');
+    const links = document.querySelectorAll('a, button, .project-item');
+    const ambientContainer = document.getElementById('ambient-3d-container');
 
-    // --- 1.5 Hamburger Menu ---
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
+    // --- Create Ambient 3D Shapes ---
+    const shapeCount = 12;
+    const shapes = [];
 
-    // Create overlay element
-    const overlay = document.createElement('div');
-    overlay.className = 'nav-overlay';
-    document.body.appendChild(overlay);
+    for (let i = 0; i < shapeCount; i++) {
+        const shape = document.createElement('div');
+        shape.className = 'floating-shape';
+        
+        // Random initial positions
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const z = (Math.random() - 0.5) * 500;
+        const size = 50 + Math.random() * 150;
+        const rotation = Math.random() * 360;
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        overlay.classList.toggle('active');
-    });
-
-    // Close menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-            overlay.classList.remove('active');
+        shape.style.left = `${x}%`;
+        shape.style.top = `${y}%`;
+        shape.style.width = `${size}px`;
+        shape.style.height = `${size}px`;
+        
+        ambientContainer.appendChild(shape);
+        shapes.push({
+            el: shape,
+            x, y, z,
+            rx: Math.random() * 360,
+            ry: Math.random() * 360,
+            speed: 0.05 + Math.random() * 0.1
         });
-    });
-
-    // Close menu when overlay is clicked
-    overlay.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        overlay.classList.remove('active');
-    });
-
-    // --- 2. Dark Mode Warp Effect ---
-    const toggle = document.querySelector('.theme-switch input');
-
-    toggle.addEventListener('change', (e) => {
-        if (!document.startViewTransition) {
-            document.documentElement.setAttribute('data-theme', e.target.checked ? 'dark' : 'light');
-            return;
-        }
-
-        const x = e.clientX ?? window.innerWidth / 2;
-        const y = e.clientY ?? window.innerHeight / 2;
-        const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-
-        const transition = document.startViewTransition(() => {
-            document.documentElement.setAttribute('data-theme', e.target.checked ? 'dark' : 'light');
-        });
-
-        transition.ready.then(() => {
-            document.documentElement.animate(
-                { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`] },
-                { duration: 500, easing: 'ease-in', pseudoElement: '::view-transition-new(root)' }
-            );
-        });
-    });
-
-    // --- 3. Typing Animation ---
-    const textElement = document.querySelector('.typing-text');
-    if (!textElement) {
-        // Create it if it doesn't exist in the HTML structure
-        const target = document.querySelector('.headline');
-        const span = document.createElement('span');
-        span.className = 'highlight typing-text';
-        target.appendChild(span);
     }
 
-    const words = ["Frontend UI", "Backend Architecture", "Full-Stack Logic", "API Integration"];
-    let i = 0, j = 0, isDeleting = false;
+    // --- Mouse & Scroll Following Logic ---
+    let mouseX = 0;
+    let mouseY = 0;
+    let scrollY = window.scrollY;
 
-    function type() {
-        const currentWord = words[i];
-        document.querySelector('.typing-text').textContent = isDeleting ? currentWord.substring(0, j--) : currentWord.substring(0, j++);
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        
+        // Cursor movement
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
 
-        if (!isDeleting && j > currentWord.length) {
-            isDeleting = true;
-            setTimeout(type, 2000);
-        } else if (isDeleting && j === 0) {
-            isDeleting = false;
-            i = (i + 1) % words.length;
-            setTimeout(type, 500);
-        } else {
-            setTimeout(type, isDeleting ? 100 : 200);
-        }
+    window.addEventListener('scroll', () => {
+        scrollY = window.scrollY;
+    });
+
+    function animateShapes() {
+        shapes.forEach((shape, i) => {
+            const parallaxX = mouseX * (shape.z / 5);
+            const parallaxY = mouseY * (shape.z / 5);
+            const scrollOffset = scrollY * shape.speed;
+
+            shape.rx += 0.2;
+            shape.ry += 0.3;
+
+            shape.el.style.transform = `
+                translate3d(${parallaxX}px, ${parallaxY - scrollOffset}px, ${shape.z}px) 
+                rotateX(${shape.rx}rx) 
+                rotateY(${shape.ry}deg)
+            `;
+        });
+        requestAnimationFrame(animateShapes);
     }
-    type();
+    animateShapes();
 
-    // --- 4. Counter Animation ---
-    const stats = document.querySelectorAll('.stat-number');
-    const observer = new IntersectionObserver((entries) => {
+    links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            cursor.classList.add('active');
+        });
+        link.addEventListener('mouseleave', () => {
+            cursor.classList.remove('active');
+        });
+    });
+
+    // --- Section Reveal Logic ---
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const target = +entry.target.dataset.target;
-                let count = 0;
-                const update = () => {
-                    if (count < target) {
-                        count += Math.ceil(target / 50);
-                        entry.target.innerText = count > target ? target : count;
-                        setTimeout(update, 30);
-                    }
-                }
-                update();
-                observer.unobserve(entry.target);
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 1 });
+    }, observerOptions);
 
-    stats.forEach(stat => observer.observe(stat));
+    document.querySelectorAll('section').forEach(section => {
+        section.classList.add('reveal-on-scroll');
+        revealObserver.observe(section);
+    });
+
+    // --- Project Item Hover Image Reveal (Optional enhancement) ---
+    // This could be expanded with real image reveals if assets were available
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    projectItems.forEach(item => {
+        item.addEventListener('mousemove', (e) => {
+            // Logic for moving an image preview could go here
+        });
+    });
+
+    // --- Smooth Scroll for Anchor Links ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 });
