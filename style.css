@@ -473,50 +473,228 @@ main {
     transform: translateY(0) rotateX(0deg) translateZ(0);
 }
 
+/* --- Holographic Assistant --- */
+#hologram-system {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5000;
+}
+
+#hologram-avatar {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    perspective: 1000px;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    pointer-events: auto;
+    cursor: grab;
+}
+
+.octahedron {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate-hologram 10s linear infinite;
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 62, 0, 0.5);
+    background: rgba(255, 62, 0, 0.05);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.face.top { transform: rotateX(45deg) translateZ(10px); }
+.face.bottom { transform: rotateX(-45deg) translateZ(10px); }
+.face.front { transform: rotateY(45deg) translateZ(10px); }
+.face.back { transform: rotateY(-45deg) translateZ(10px); }
+
+@keyframes rotate-hologram {
+    from { transform: rotateY(0deg) rotateX(0deg); }
+    to { transform: rotateY(360deg) rotateX(360deg); }
+}
+
+.hologram-label {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    white-space: nowrap;
+    text-shadow: 0 0 10px var(--accent);
+}
+
+.hologram-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 62, 0, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* --- Sleek Glass Terminal --- */
+.glass-panel {
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+    width: 400px;
+    max-height: 300px;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 62, 0, 0.3);
+    padding: 2rem;
+    color: var(--text);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    z-index: 6000;
+    pointer-events: auto;
+    overflow-y: auto;
+    word-wrap: break-word;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.glass-panel.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 1rem;
+    position: sticky;
+    top: 0;
+    background: inherit;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+.status-dot.pulse {
+    animation: pulse-ring 2s infinite;
+}
+
+.terminal-id {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+}
+
+.terminal-content {
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: var(--font-display);
+    white-space: pre-wrap; /* Ensure text wraps correctly */
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--accent);
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- Signal Alerts --- */
+.signal-alert {
+    position: absolute;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 62, 0, 0.3);
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    animation: signal-float 4s ease-in-out infinite;
+    z-index: 5005;
+    color: var(--accent);
+}
+
+.signal-alert:hover {
+    background: var(--accent);
+    color: #000;
+    transform: scale(1.1) translateZ(50px);
+    box-shadow: 0 0 20px var(--accent);
+}
+
+.signal-text {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+@keyframes signal-float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(0, -10px); }
+}
+
+#hologram-avatar:active {
+    transform: scale(0.8);
+}
+
+#close-terminal {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto;
+    line-height: 1;
+    padding: 0 5px;
+}
+
+#close-terminal:hover {
+    color: #fff;
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
     .navbar { padding: 1.5rem; }
-    .hamburger { display: flex; }
-    
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background: var(--bg);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem;
-        transition: right 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-        z-index: 1000;
+    ...
+    .glass-panel {
+        width: 90%;
+        right: 5%;
+        bottom: 2rem;
+        padding: 1.5rem;
     }
 
-    .nav-links.active {
-        right: 0;
+    #hologram-avatar {
+        width: 40px;
+        height: 40px;
     }
 
-    .nav-links a {
-        font-size: 2rem;
+    .signal-alert {
+        padding: 0.8rem 1rem;
+        width: 80%;
+        left: 10% !important;
+        text-align: center;
     }
-
-    .giant-text {
-        font-size: clamp(2.5rem, 15vw, 5rem);
-    }
-
-    .hero-line-2 { margin-left: 0; }
-    .hero-subtext { margin-left: 0; margin-top: 2rem; }
-    
-    .about-flex { flex-direction: column; gap: 3rem; }
-    .editorial-p { font-size: 1.2rem; }
-    
-    .project-item { padding: 3rem 5vw; flex-direction: column; align-items: flex-start; gap: 2rem; }
-    .project-info { grid-template-columns: 1fr; gap: 1rem; }
-    .project-title { font-size: 2.5rem; }
-    .project-desc { max-width: 100%; }
-    .project-category { text-align: left; }
-    .project-link { opacity: 1; transform: none; }
-    
-    .contact-email { font-size: 1.8rem; }
 }

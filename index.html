@@ -18,6 +18,35 @@
 
 <body>
     <div id="ambient-3d-container"></div>
+    
+    <!-- Holographic Assistant System -->
+    <div id="hologram-system">
+        <div id="hologram-avatar">
+            <div class="octahedron">
+                <div class="face front"></div>
+                <div class="face back"></div>
+                <div class="face left"></div>
+                <div class="face right"></div>
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+            </div>
+            <div class="hologram-label">&lt; KISHAN_AI /&gt;</div>
+            <div class="hologram-glow"></div>
+        </div>
+
+        <div id="hologram-terminal" class="glass-panel hidden">
+            <div class="terminal-header">
+                <span class="status-dot pulse"></span>
+                <span class="terminal-id">LOG_FETCH_01 //</span>
+                <button id="close-terminal" aria-label="Close Terminal">×</button>
+            </div>
+            <div class="terminal-content"></div>
+            <div class="terminal-cursor">_</div>
+        </div>
+
+        <div id="signal-alerts"></div>
+    </div>
+
     <div id="custom-cursor"></div>
 
     <nav class="navbar">
