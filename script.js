@@ -2,6 +2,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.getElementById('custom-cursor');
     const links = document.querySelectorAll('a, button, .project-item');
     const ambientContainer = document.getElementById('ambient-3d-container');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    // --- Touch Detection ---
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    // --- Custom Cursor Logic ---
+    if (!isTouchDevice) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+            });
+        });
+    }
+
+    // --- Hamburger Menu Logic ---
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    }
 
     // --- Create Ambient 3D Shapes ---
     const shapeCount = 12;

@@ -22,6 +22,13 @@ html {
 
 body {
     cursor: none;
+    overflow-x: hidden;
+}
+
+/* Hide cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    body { cursor: auto; }
+    #custom-cursor { display: none; }
 }
 
 /* --- Custom Cursor --- */
@@ -111,6 +118,29 @@ body {
     background: none;
     border: none;
     cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2000;
+}
+
+.hamburger span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--text);
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* --- Hero Section --- */
@@ -445,11 +475,48 @@ main {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-subtext { margin-left: 0; }
-    .about-flex { flex-direction: column; }
-    .project-item { flex-direction: column; align-items: flex-start; gap: 2rem; }
-    .project-link { opacity: 1; transform: none; }
+    .navbar { padding: 1.5rem; }
+    .hamburger { display: flex; }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        transition: right 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 2rem;
+    }
+
+    .giant-text {
+        font-size: clamp(2.5rem, 15vw, 5rem);
+    }
+
+    .hero-line-2 { margin-left: 0; }
+    .hero-subtext { margin-left: 0; margin-top: 2rem; }
+    
+    .about-flex { flex-direction: column; gap: 3rem; }
+    .editorial-p { font-size: 1.2rem; }
+    
+    .project-item { padding: 3rem 5vw; flex-direction: column; align-items: flex-start; gap: 2rem; }
     .project-info { grid-template-columns: 1fr; gap: 1rem; }
+    .project-title { font-size: 2.5rem; }
+    .project-desc { max-width: 100%; }
     .project-category { text-align: left; }
+    .project-link { opacity: 1; transform: none; }
+    
+    .contact-email { font-size: 1.8rem; }
 }
