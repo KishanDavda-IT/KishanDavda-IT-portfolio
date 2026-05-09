@@ -14,9 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let holoX = Math.random() * (window.innerWidth - 100);
     let holoY = Math.random() * (window.innerHeight - 100);
-    let targetX = holoX;
-    let targetY = holoY;
     let isDocked = false;
+
+    // Complex movement state for variety
+    let time = 0;
+    let complexity = Math.random() * 10000;
+    const baseSpeed = 0.8 + Math.random() * 0.4;
+    let vx = 0, vy = 0; // velocity
 
     const SystemData = [
         { q: "IDENTIFY: KISHAN", a: "IDENTITY: KISHAN DAVDA // FULL-STACK ARCHITECT // SPECIALIZING IN THE INTERSECTION OF LOGIC AND AESTHETIC PRECISION. BASED IN GUJARAT, INDIA." },
@@ -25,33 +29,58 @@ document.addEventListener('DOMContentLoaded', () => {
         { q: "STATUS: AVAILABILITY", a: "SYSTEM_STATUS: ACTIVE // OPEN FOR HIGH-IMPACT ROLES IN FULL-STACK OR FRONTEND DEVELOPMENT. READY FOR DEPLOYMENT INTO PRODUCTION ENVIRONMENTS." }
     ];
 
+    // Perlin-noise-like smooth random function for variety
+    function noise(t) {
+        return Math.sin(t) + Math.sin(t * 2.1) * 0.5 + Math.sin(t * 4.3) * 0.25;
+    }
+
     function updateHologram() {
         if (!isDocked) {
-            // Smooth floating movement
-            holoX += (targetX - holoX) * 0.02;
-            holoY += (targetY - holoY) * 0.02;
+            time += 0.016; // approximate ~60fps delta
+            const scale = 150; // movement amplitude
 
-            if (Math.abs(targetX - holoX) < 10) {
-                targetX = Math.random() * (window.innerWidth - 100);
-                targetY = Math.random() * (window.innerHeight - 100);
-            }
+            // Multiple overlapping sine waves with different frequencies
+            // creates organic, non-repeating movement patterns
+            const t1 = time * baseSpeed + complexity;
+            const t2 = time * (baseSpeed * 1.3) + complexity * 0.7;
+            const t3 = time * (baseSpeed * 0.7) + complexity * 1.3;
 
-            hologram.style.transform = `translate3d(${holoX}px, ${holoY}px, 0)`;
+            // Target position based on multi-frequency noise
+            const targetX = (window.innerWidth / 2) + noise(t1) * scale + Math.sin(t2) * (scale * 0.5);
+            const targetY = (window.innerHeight / 2) + noise(t3) * (scale * 0.6) + Math.cos(t1) * (scale * 0.4);
+
+            // Smooth interpolation with velocity-based easing
+            vx += (targetX - holoX) * 0.015;
+            vy += (targetY - holoY) * 0.015;
+            vx *= 0.95; // damping
+            vy *= 0.95;
+
+            holoX += vx;
+            holoY += vy;
+
+            // Keep within bounds with soft bounce
+            const margin = 80;
+            if (holoX < margin) { holoX = margin; vx *= -0.5; }
+            if (holoX > window.innerWidth - margin) { holoX = window.innerWidth - margin; vx *= -0.5; }
+            if (holoY < margin) { holoY = margin; vy *= -0.5; }
+            if (holoY > window.innerHeight - margin) { holoY = window.innerHeight - margin; vy *= -0.5; }
+
+            hologram.style.transform = `translate3d(${holoX.toFixed(1)}px, ${holoY.toFixed(1)}px, 0)`;
         }
         requestAnimationFrame(updateHologram);
     }
 
     function spawnSignalMenu() {
         if (isDocked) return;
-        
+
         signalContainer.innerHTML = '';
         const isSmallScreen = window.innerWidth < 768;
-        
+
         SystemData.forEach((data, index) => {
             const alert = document.createElement('div');
             alert.className = 'signal-alert';
             alert.innerHTML = `<span class="signal-text">${data.q}</span>`;
-            
+
             if (isSmallScreen) {
                 const offsetTop = (index - (SystemData.length / 2)) * 70;
                 alert.style.left = '10%';
@@ -62,10 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert.style.left = `${holoX + 80}px`;
                 alert.style.top = `${holoY + offsetTop}px`;
             }
-            
+
             alert.style.opacity = '0';
             alert.style.transform = 'translateX(-20px)';
-            
+
             alert.onclick = (e) => {
                 e.stopPropagation();
                 signalContainer.innerHTML = '';
@@ -73,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             signalContainer.appendChild(alert);
-            
+
             setTimeout(() => {
                 alert.style.transition = 'all 0.4s cubic-bezier(0.19, 1, 0.22, 1)';
                 alert.style.opacity = '1';
@@ -94,13 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function executeDataFetch(text) {
         if (isDocked) return;
         isDocked = true;
-        
+
         const isSmallScreen = window.innerWidth < 768;
         const dockX = isSmallScreen ? window.innerWidth / 2 - 20 : window.innerWidth - 450;
         const dockY = isSmallScreen ? window.innerHeight - 350 : window.innerHeight - 450;
-        
+
         hologram.style.transform = `translate3d(${dockX}px, ${dockY}px, 0) scale(${isSmallScreen ? 1.2 : 1.5})`;
-        
+
         setTimeout(() => {
             terminal.classList.add('active');
             typeTerminal(text);
@@ -165,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 3D Ambient Background ---
-    const shapeCount = 12;
+    const shapeCount = 6; // reduced from 12 for performance
     const shapes = [];
     for (let i = 0; i < shapeCount; i++) {
         const shape = document.createElement('div');
@@ -179,20 +208,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let mouseX = 0, mouseY = 0, scrollY = window.scrollY;
+    let mouseIdle = null;
+
     document.addEventListener('mousemove', (e) => {
         mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
         mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-    });
-    window.addEventListener('scroll', () => scrollY = window.scrollY);
+        clearTimeout(mouseIdle);
+        mouseIdle = setTimeout(() => { mouseX = 0; mouseY = 0; }, 100);
+    }, { passive: true });
 
-    function animateShapes() {
-        shapes.forEach(shape => {
-            shape.rx += 0.2; shape.ry += 0.3;
-            shape.el.style.transform = `translate3d(${mouseX * (shape.z / 5)}px, ${mouseY * (shape.z / 5) - scrollY * shape.speed}px, ${shape.z}px) rotateX(${shape.rx}deg) rotateY(${shape.ry}deg)`;
-        });
+    window.addEventListener('scroll', () => scrollY = window.scrollY, { passive: true });
+
+    // Throttled animation loop for ambient shapes
+    let lastShapeFrame = 0;
+    function animateShapes(now) {
+        // Run at ~30fps to save frame budget
+        if (now - lastShapeFrame > 33) {
+            lastShapeFrame = now;
+            shapes.forEach(shape => {
+                shape.rx += 0.2; shape.ry += 0.3;
+                // use transform3d for GPU acceleration
+                shape.el.style.transform = `translate3d(${mouseX * (shape.z / 5)}px, ${mouseY * (shape.z / 5) - scrollY * shape.speed}px, ${shape.z}px) rotateX(${shape.rx}deg) rotateY(${shape.ry}deg)`;
+            });
+        }
         requestAnimationFrame(animateShapes);
     }
-    animateShapes();
+    requestAnimationFrame(animateShapes);
 
     // --- Section Reveal ---
     const revealObserver = new IntersectionObserver((entries) => {
