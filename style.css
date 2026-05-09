@@ -18,11 +18,15 @@ html {
     color: var(--text);
     font-family: var(--font-display);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
 }
 
 body {
     cursor: none;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 /* Hide cursor on touch devices */
@@ -150,6 +154,7 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 0 5vw;
+    min-height: 100dvh;
 }
 
 .hero-wrapper {
@@ -391,6 +396,7 @@ body {
     padding: 0 5vw;
     background: var(--text);
     color: var(--bg);
+    min-height: 100dvh;
 }
 
 .contact-title {
@@ -675,10 +681,208 @@ main {
     color: #fff;
 }
 
-/* --- Responsive --- */
+/* ============================================================
+   --- TABLETS (max-width: 1024px) ---
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    .about-flex {
+        gap: 6vw;
+    }
+
+    .editorial-p {
+        font-size: 1.25rem;
+    }
+}
+/* ============================================================
+   --- MOBILE (max-width: 768px) ---
+   ============================================================ */
+
 @media (max-width: 768px) {
-    .navbar { padding: 1.5rem; }
-    ...
+    /* --- General Spacing --- */
+    body {
+        padding-top: 4rem;
+    }
+
+    .navbar {
+        padding: 1.5rem;
+    }
+
+    /* --- Mobile Hamburger Toggle --- */
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        z-index: 1500;
+        padding: 0;
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    /* --- Hero Section --- */
+    .hero-section {
+        height: auto;
+        min-height: 100dvh;
+        padding: 5rem 6vw 0;
+        padding-bottom: 4rem;
+        justify-content: flex-start;
+    }
+
+    .giant-text {
+        font-size: clamp(2.4rem, 12vw, 5rem);
+        line-height: 0.9;
+    }
+
+    .hero-line-2 {
+        margin-left: 3vw;
+    }
+
+    .hero-subtext {
+        margin-left: 0;
+        margin-top: 2rem;
+        max-width: none;
+        width: 100%;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    /* --- About Section --- */
+    .about-section {
+        padding: 10vh 6vw;
+    }
+
+    .about-flex {
+        flex-direction: column-reverse;
+        gap: 3rem;
+    }
+
+    .about-image {
+        width: 100%;
+    }
+
+    .image-reveal {
+        max-height: 50vh;
+        transform: none;
+    }
+
+    .about-image:hover .image-reveal {
+        transform: none;
+    }
+
+    .editorial-p {
+        font-size: 1.2rem;
+    }
+
+    .editorial-p.secondary {
+        font-size: 0.95rem;
+    }
+
+    /* --- Expertise Grid --- */
+    .expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 5vh;
+    }
+
+    /* --- Work / Projects Section --- */
+    .work-section {
+        padding: 6vh 0;
+    }
+
+    .project-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 2.5rem 6vw;
+    }
+
+    .project-item:hover {
+        transform: none;
+    }
+
+    .project-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        transform: none;
+    }
+
+    .project-num {
+        margin-top: 0;
+        font-size: 0.85rem;
+    }
+
+    .project-title {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+    }
+
+    .project-desc {
+        font-size: 0.95rem;
+        margin-top: 0.75rem;
+    }
+
+    .project-category {
+        text-align: left;
+        margin-top: 0.25rem;
+    }
+
+    .project-link {
+        opacity: 1;
+        transform: none;
+        align-self: flex-end;
+    }
+
+    .project-item:hover .project-link {
+        transform: none;
+    }
+
+    /* --- Contact Section --- */
+    .contact-section {
+        height: auto;
+        min-height: 100dvh;
+        padding: 5rem 6vw;
+    }
+
+    .contact-title {
+        margin-bottom: 2rem;
+    }
+
+    .contact-flex {
+        justify-content: flex-start;
+    }
+
+    .contact-email {
+        font-size: clamp(1.1rem, 5vw, 2rem);
+        word-break: break-all;
+    }
+
+    .social-links {
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    /* --- Holographic Terminal --- */
     .glass-panel {
         width: 90%;
         right: 5%;
@@ -696,5 +900,151 @@ main {
         width: 80%;
         left: 10% !important;
         text-align: center;
+    }
+}
+
+/* ============================================================
+   --- SMALL PHONES (max-width: 480px) ---
+   ============================================================ */
+
+@media (max-width: 480px) {
+    /* --- Typography Adjustments --- */
+    html {
+        font-size: 14px;
+    }
+
+    .giant-text {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+        letter-spacing: -0.03em;
+    }
+
+    .hero-line-2 {
+        margin-left: 1vw;
+    }
+
+    .hero-subtext {
+        font-size: 0.85rem;
+        line-height: 1.7;
+    }
+
+    .section-heading {
+        font-size: clamp(1.3rem, 5vw, 2rem);
+    }
+
+    .editorial-p {
+        font-size: 1.1rem;
+    }
+
+    /* --- Adjust spacing --- */
+    .hero-section {
+        padding-top: 3.5rem;
+    }
+
+    .about-section,
+    .contact-section {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+
+    .project-item {
+        gap: 1.2rem;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+
+    .project-desc {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    /* --- Hologram & Terminal --- */
+    .glass-panel {
+        width: 92%;
+        right: 4%;
+        bottom: 1.5rem;
+    }
+
+    #hologram-avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+    .hologram-label {
+        font-size: 8px;
+        bottom: -25px;
+    }
+
+    .signal-alert {
+        width: 90%;
+        left: 5% !important;
+    }
+
+    /* --- Terminal --- */
+    .terminal-content {
+        font-size: 12px;
+    }
+
+    /* Fix: Override font-size fix inside media query for html/body --- */
+    .about-section .editorial-p {
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================================
+   --- SMALL HEIGHTS / LANDSCAPE PHONES ---
+   ============================================================ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        padding-top: 2rem;
+        justify-content: center;
+    }
+
+    .giant-text {
+        font-size: clamp(2rem, 8vw, 4rem);
+    }
+
+    .hero-subtext {
+        margin-top: 1.5rem;
+    }
+
+    .contact-section {
+        min-height: auto;
+        padding: 3rem 5vw;
+    }
+
+    .glass-panel {
+        bottom: 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+}
+
+/* ============================================================
+   --- LARGE SCREENS ---
+   ============================================================ */
+
+@media (min-width: 1440px) {
+    .hero-section {
+        padding: 0 8vw;
+    }
+
+    .about-section,
+    .contact-section {
+        padding-left: 8vw;
+        padding-right: 8vw;
+    }
+
+    .project-item {
+        padding-left: 8vw;
+        padding-right: 8vw;
     }
 }
