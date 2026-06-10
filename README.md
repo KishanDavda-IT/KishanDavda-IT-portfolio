@@ -1,6 +1,6 @@
-# Kishan Davda — Full-Stack Developer Portfolio
+# Kishan Davda — Full-Stack Developer Portfolio (v2)
 
-A dark, immersive personal portfolio website featuring 3D ambient background effects, a custom cursor, scroll-triggered reveal animations, and a holographic AI assistant interaction.
+A clean, typography-driven personal portfolio website designed with the sleek "Mainframe" aesthetic. Features an interactive 60fps video-scrubbing background, hardware-accelerated animations, and a minimal UI powered by modern web technologies.
 
 🔗 **[Live Demo](https://KishanDavda-IT.github.io/KishanDavda-IT-portfolio/)**
 
@@ -8,14 +8,11 @@ A dark, immersive personal portfolio website featuring 3D ambient background eff
 
 ## ✨ Features
 
-- **OLED-Optimized Design** — True black (`#000000`) background with high-contrast typography for AMOLED displays
-- **3D Ambient Background** — Floating geometric shapes that respond to mouse movement and scroll
-- **Custom Cursor** — Blend-mode cursor with hover scaling effects (desktop only)
-- **Scroll Animations** — Sections reveal with 3D perspective transforms on scroll using Intersection Observer
-- **Holographic AI Assistant** — Interactive octahedron avatar that floats, spawns signal alerts, and opens a glass terminal with typed output
-- **Fully Responsive** — Optimized breakpoints for tablets, mobile phones, small phones, and landscape orientations
-- **Hamburger Navigation** — Full-screen overlay mobile menu with smooth slide-in animation
-- **Smooth Scrolling** — Anchor links with smooth scroll behavior
+- **Mainframe Aesthetic** — High-contrast typography with a minimal black-and-white color scheme and `HelveticaNowDisplay` fonts.
+- **Interactive Background** — A full-screen video background that perfectly scrubs through frames based on mouse movement, utilizing `requestAnimationFrame` for buttery-smooth performance.
+- **Hardware-Accelerated UI** — Smooth entrance animations for action pills and interactive hover states driven by GPU-accelerated Tailwind transitions.
+- **Responsive Architecture** — Fully responsive design with a custom-built mobile overlay navigation and hamburger menu animations.
+- **Secure & Optimized** — Audited dependencies, passive event listeners to prevent scroll-blocking, and secure cross-origin linking.
 
 ---
 
@@ -23,37 +20,10 @@ A dark, immersive personal portfolio website featuring 3D ambient background eff
 
 | Layer     | Technology                                |
 |-----------|-------------------------------------------|
-| Structure | HTML5, Semantic Elements                  |
-| Styling   | CSS3, Custom Properties (Variables), Grid, Flexbox |
-| Logic     | Vanilla JavaScript (ES6+)                 |
-| Fonts     | Google Fonts (Syne, Playfair Display)       |
-| Icons     | Font Awesome 6                            |
+| Framework | React 18, TypeScript, Vite                |
+| Styling   | Tailwind CSS v3                           |
+| Fonts     | HelveticaNowDisplay (Medium & Regular)    |
 | Hosting   | GitHub Pages                              |
-
----
-
-## 📱 Responsive Breakpoints
-
-| Breakpoint        | Target Devices                          |
-|-------------------|------------------------------------------|
-| `min-width: 1440px`  | Large desktop screens                  |
-| `max-width: 1024px`  | Tablets & small laptops               |
-| `max-width: 768px`   | Mobile phones                         |
-| `max-width: 480px`   | Small phones (iPhone SE, etc.)        |
-| `max-height: 500px`  | Landscape phones & short viewports    |
-
----
-
-## 📁 Project Structure
-
-```
-├── index.html              # Main HTML page
-├── style.css               # All styles including responsive media queries
-├── script.js               # Custom cursor, scroll animations, hamburger menu, hologram system
-├── Profile.jpeg            # Profile photo
-├── Kishan_Davda_Resume.pdf # Resume PDF
-└── README.md
-```
 
 ---
 
@@ -64,20 +34,30 @@ A dark, immersive personal portfolio website featuring 3D ambient background eff
    git clone https://github.com/KishanDavda-IT/KishanDavda-IT-portfolio.git
    ```
 
-2. **Open locally**
+2. **Install dependencies**
    ```bash
    cd KishanDavda-IT-portfolio
+   npm install
    ```
-   Open `index.html` in your browser — no build tools required.
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
 ---
 
-## ♿ Accessibility & UX
+## 📦 Deployment (GitHub Pages)
 
-- Custom cursor is automatically hidden on touch devices (`hover: none`)
-- Glass terminal panel supports backdrop blur with a fallback for unsupported browsers
-- Navigation links are keyboard-accessible and close the mobile menu on click
-- Focus states are preserved on interactive elements
+This project uses the `gh-pages` package to deploy the built React application to the `gh-pages` branch.
+
+To deploy a new version:
+
+```bash
+npm run deploy
+```
+
+*Note: Ensure your GitHub repository's "Pages" settings are configured to build from the `gh-pages` branch.*
 
 ---
 
@@ -91,4 +71,4 @@ A dark, immersive personal portfolio website featuring 3D ambient background eff
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the MIT License.
