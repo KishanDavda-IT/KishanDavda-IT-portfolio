@@ -178,7 +178,7 @@ function App() {
             <div 
               className={`flex flex-wrap gap-y-1 transition-all duration-[400ms] ease-in-out transform-gpu will-change-transform ${showPills ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
             >
-              <a href="/Kishan_Davda_Resume.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-white text-black border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200">
+              <a href="./Kishan_Davda_Resume.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center bg-white text-black border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200">
                 View Resume
               </a>
               <a href="#work" className="inline-flex items-center justify-center bg-white text-black border border-white rounded-full text-[13px] sm:text-[15px] px-4 sm:px-5 py-[0.3em] mx-[0.2em] mb-[0.4em] whitespace-nowrap hover:bg-black hover:text-white transition-colors duration-200">
@@ -291,7 +291,7 @@ function App() {
           <div className="flex flex-wrap gap-6 sm:gap-10 text-lg sm:text-xl text-black/80 font-medium tracking-wide">
             <a href="https://github.com/KishanDavda-IT" target="_blank" rel="noopener noreferrer" className="hover:text-black hover:opacity-60 transition-all">GITHUB</a>
             <a href="https://www.linkedin.com/in/kishan-davda-667909342" target="_blank" rel="noopener noreferrer" className="hover:text-black hover:opacity-60 transition-all">LINKEDIN</a>
-            <a href="/Kishan_Davda_Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-black hover:opacity-60 transition-all">RESUME</a>
+            <a href="./Kishan_Davda_Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-black hover:opacity-60 transition-all">RESUME</a>
           </div>
         </div>
       </section>
