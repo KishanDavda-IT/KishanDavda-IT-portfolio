@@ -222,7 +222,7 @@ function App() {
           </div>
           <div className="w-full sm:w-2/3 md:w-1/3">
             <img 
-              src="/Profile.jpeg" 
+              src={`${import.meta.env.BASE_URL}Profile.jpeg`} 
               alt="Kishan Davda" 
               className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700 aspect-[3/4] object-top"
             />
