@@ -23,14 +23,14 @@ function App() {
     let accumulatedDelta = 0;
     let ticking = false;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const processMove = (clientX: number) => {
       if (prevX === -1) {
-        prevX = e.clientX;
+        prevX = clientX;
         return;
       }
       
-      accumulatedDelta += e.clientX - prevX;
-      prevX = e.clientX;
+      accumulatedDelta += clientX - prevX;
+      prevX = clientX;
 
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -56,8 +56,29 @@ function App() {
       }
     };
 
+    const handleMouseMove = (e: MouseEvent) => processMove(e.clientX);
+    
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        prevX = e.touches[0].clientX;
+      }
+    };
+    
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        processMove(e.touches[0].clientX);
+      }
+    };
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
   }, []);
 
   const handleSeeked = () => {
